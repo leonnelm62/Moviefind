@@ -54,7 +54,7 @@ const onMovieSelect = async (movie, summaryElement, side) => {
     });
     summaryElement.innerHTML = movieTemplate(response.data);
 
-    if (side === left) {
+    if (side === 'left') {
         leftMovie = response.data;
     } else {
         rightMovie = response.data;
@@ -70,6 +70,12 @@ const runComparison = () => {
 };
 
 const movieTemplate = (movieDetail) => {
+    const dollards = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
+    const metascore = parseInt(movieDetail.Metascore);
+    const imdbRating = parseFloat(movieDetail.imdbRating);
+    const imdbvotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ''));
+    console.log(metascore, imdbRating, imdbvotes);
+
     return `
         <article class="media">
             <figure class="media-left">
